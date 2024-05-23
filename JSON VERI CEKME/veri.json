@@ -1,0 +1,13 @@
+{
+    "isim": "Hasret",
+    "Soyisim": "Enginer",
+    "Yas": 20,
+    "Meslek": "Bilgisayar Muhendisi",
+    "Sehir": "Edirne",
+    "Bildigi_diller": [
+        {"dil": "JavaScript", "Seviye": "Uzman"},
+        {"dil": "Python", "Seviye": "Uzman"},
+        {"dil": "Html", "Seviye": "Orta"},
+        {"dil": "Css", "Seviye": "Baslangic"}
+    ]
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 5px;
+            width: 250px;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="ornek()">Eğitim Setlerini Listele</button>
+    <br>
+    <table id="sonuc">
+        <!-- Başlangıçta boş -->
+    </table>
+    <script type="text/javascript">
+        function ornek() {
+            var istek = new XMLHttpRequest();
+            istek.onreadystatechange = function() {
+                if (this.readyState == 4) {
+                    if (this.status == 200) {
+                        var tablo = "<tr style=\"background-color:#FFFCCC\"><th>Eğitim Seti Adı</th><th>Eğitmen</th><th>Ücret</th></tr>";
+                        var xmldegerleri = this.responseXML;
+                        var etiket = xmldegerleri.getElementsByTagName("SETLER");
+                        var etiketsayi = etiket.length;
+                        for (var baslangic = 0; baslangic < etiketsayi; baslangic++) {
+                            tablo += "<tr><td>" +
+                                etiket[baslangic].getElementsByTagName("ICERIK")[0].childNodes[0].nodeValue + "</td><td>" +
+                                etiket[baslangic].getElementsByTagName("EGITMEN")[0].childNodes[0].nodeValue + "</td><td>" +
+                                etiket[baslangic].getElementsByTagName("FIYAT")[0].childNodes[0].nodeValue + "</td></tr>";
+                        }
+                        document.getElementById("sonuc").innerHTML = tablo;
+                    } else {
+                        document.getElementById("sonuc").innerHTML = "<tr><td>Hata: " + this.status + " - " + this.statusText + "</td></tr>";
+                    }
+                }
+            };
+            istek.open("GET", "veri.xml", true);
+            istek.send();
+        }
+    </script>
+</body>
+</html>

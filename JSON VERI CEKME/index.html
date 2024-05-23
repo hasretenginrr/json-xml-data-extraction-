@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="ornek()">Bilgileri Getir</button>
+    <br>
+    <div id="sonuc">Verileri elde etmek için Tıklayınız</div>
+    <script type="text/javascript" language="javascript">
+        function ornek(){
+            var istek = new XMLHttpRequest();
+            istek.onreadystatechange = function(){
+                if(this.readyState == 4){
+                    if(this.status == 200){
+                        try {
+                            var json_deger = JSON.parse(this.responseText);
+                            var metinsonucu = "";
+                            var isimdeger = json_deger.isim;
+                            var soyisimdeger = json_deger.Soyisim;
+                            var yasdeger = json_deger.Yas;
+                            var meslekdeger = json_deger.Meslek;
+                            var sehirdeger = json_deger.Sehir;
+                            var bildigidillerdeger= json_deger.Bildigi_diller;
+                            var nesnesayi= bildigidillerdeger.length;
+                            var dillersonuc ="";
+                            for (var baslangic =0; baslangic<nesnesayi; baslangic++){
+                                dillersonuc += "Dil:" + bildigidillerdeger[baslangic].dil +" " + bildigidillerdeger[baslangic].Seviye + "<br />";
+                            }
+
+
+
+                            metinsonucu = "isim Soyisim: " + isimdeger + " " + soyisimdeger + "<br /> Yaşı: " + yasdeger + "<br /> Mesleği: " + meslekdeger + "<br /> Şehir: " + sehirdeger + "<br /> Bildiği Diller: <br />"+ dillersonuc;
+                            document.getElementById("sonuc").innerHTML = metinsonucu;
+                        } catch (e) {
+                            document.getElementById("sonuc").innerHTML = "JSON ayrıştırma hatası: " + e.message;
+                        }
+                    } else {
+                        document.getElementById("sonuc").innerHTML = "Hata: " + this.status + " - " + this.statusText;
+                    }
+                }
+            };
+            istek.open("GET", "veri.json", true);
+            istek.send();
+        }
+    </script>
+</body>
+</html>

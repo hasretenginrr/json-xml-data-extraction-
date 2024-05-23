@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<KATALOG>
+    <SETLER>
+        <ICERIK>Javascript Eğitim Seti</ICERIK>
+        <EGITMEN>Volkan Alakent</EGITMEN>
+        <FIYAT>200 TL</FIYAT>
+    </SETLER>
+    <SETLER>
+        <ICERIK>Python Eğitim Seti</ICERIK>
+        <EGITMEN>Hasret Enginer</EGITMEN>
+        <FIYAT>100 TL</FIYAT>
+    </SETLER>
+    <SETLER>
+        <ICERIK>React Eğitim Seti</ICERIK>
+        <EGITMEN>Cem Taşkın</EGITMEN>
+        <FIYAT>50 TL</FIYAT>
+    </SETLER>
+</KATALOG>
